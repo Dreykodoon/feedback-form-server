@@ -8,7 +8,9 @@
         "url": "https://github.com/Dreykodoon/feedback-form-server.git"
     },
     "scripts": {
-        "start": "nodemon --watch src src/index.js"
+        "start": "nodemon --exec \"npm run lint && npm run server\"",
+        "server": "nodemon --watch src src/index.js",
+        "lint": "./node_modules/.bin/eslint ."
     },
     "keywords": [],
     "author": "",

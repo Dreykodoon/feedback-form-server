@@ -10,7 +10,8 @@
     },
     "globals": {
         "module": true,
-        "require": true
+        "require": true,
+        "__dirname": true
     },
     "rules": {
         "no-cond-assign": [

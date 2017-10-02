@@ -1,16 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const winston = require('winston');
-const path = require('path');
-
-const fileName = path.join(__dirname, 'logfile.log');
-
-const logger = new (winston.Logger)({
-    transports: [
-        new (winston.transports.Console)(),
-        new (winston.transports.File)({filename: fileName, json: false})
-    ]
-});
+const logger = require('./logger');
 
 const app = express();
 

@@ -9,8 +9,10 @@ app.use(bodyParser.json());
 const router = express.Router();
 
 router.post('/', function(req, res) {
-    logger.log('info', req.body);
-    res.send('received test');
+    if (req.body.email2) {
+        logger.log('warn', req.body);
+    }
+    res.send('Message forwarded successfully!');
 });
 
 app.use('/app', router);

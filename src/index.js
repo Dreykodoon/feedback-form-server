@@ -25,5 +25,5 @@ router.post('/', function(req, res) {
 app.use('/app', router);
 
 app.listen(8080, function() {
-    console.log('Example app listening on port 8080!');
+    logger.log('info', 'Feedback Form server started. Listening on port 8080!');
 });

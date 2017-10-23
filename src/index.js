@@ -11,9 +11,14 @@ const router = express.Router();
 
 router.post('/', function(req, res) {
     if (isFormValid(req.body)) {
-        // Log any spamming attempt.
-        if (req.body.email2) {
+        const spammingAttempt = !!req.body.email2;
+        if (spammingAttempt) {
             logger.log('warn', req.body);
+        }
+        else if (process.env.NODE_ENV === 'production') {
+            // Add logic for sending emails here
+            // ...
+            console.log(process.env.EMAIL_USER, process.env.EMAIL_PASS);
         }
         res.send('Message forwarded successfully!');
     }

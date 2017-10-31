@@ -1,21 +1,21 @@
 const nodemailer = require('nodemailer');
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
+    host:   'smtp.gmail.com',
+    port:   587,
     secure: false, // true for 465, false for other ports
-    auth: {
+    auth:   {
         user: '',
         pass: '',
     }
 });
 
 const mailOptions = {
-    from: 'feedback.form.dreykodoon@gmail.com',
-    to: 'ciobanmihai@gmail.com',
+    from:    '',
+    to:      '',
     subject: 'Hello',
-    text: 'Hello world',
-    html: '<b>Hello world?</b>'
+    text:    'Hello world',
+    html:    '<b>Hello world?</b>'
 };
 
 transporter.sendMail(mailOptions, (error, info) => {

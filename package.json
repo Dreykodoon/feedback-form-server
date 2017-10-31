@@ -9,7 +9,7 @@
     },
     "scripts": {
         "start": "nodemon --exec \"npm run lint && npm run server\"",
-        "start-prod": "NODE_ENV=production nodemon --exec \"npm run server\"",
+        "start-prod-windows": "set NODE_ENV=production&& nodemon --exec \"npm run server\"",
         "server": "nodemon --watch src src/index.js",
         "lint": "./node_modules/.bin/eslint ."
     },

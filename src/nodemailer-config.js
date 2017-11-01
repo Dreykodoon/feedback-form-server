@@ -16,7 +16,13 @@ const mailOptions = {
     subject: 'Message from feedback.form',
 };
 
+const enhanceMailOptions = (formFields) => {
+    const emailText = 'You received the following message from ' + formFields.name + ' <' + formFields.email + '> :\n\n' + formFields.message;
+
+    return Object.assign({}, mailOptions, {text: emailText});
+};
+
 module.exports = {
     transporter,
-    mailOptions,
+    enhanceMailOptions,
 };

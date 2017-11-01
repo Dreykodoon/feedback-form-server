@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('./logger');
 const {isFormValid} = require('./form-validation');
+const {transporter, enhanceMailOptions} = require('./nodemailer-config');
 
 const app = express();
 
@@ -14,13 +15,24 @@ router.post('/', function(req, res) {
         const spammingAttempt = !!req.body.email2;
         if (spammingAttempt) {
             logger.log('warn', req.body);
+            res.send('Message forwarded successfully!');
         }
         else if (process.env.NODE_ENV === 'production') {
-            // Add logic for sending emails here
-            // ...
-            console.log(process.env.EMAIL_USER, process.env.EMAIL_PASS);
+            transporter.sendMail(enhanceMailOptions(req.body), (error, info) => {
+                if (error) {
+                    logger.log('warn', error);
+                    res.status(400).send({error: 'Error while sending message!'});
+
+                    return;
+                }
+                logger.log('info', 'Message sent: %s', info.messageId);
+                res.send('Message forwarded successfully!');
+            });
         }
-        res.send('Message forwarded successfully!');
+        else {
+            // Dev mode
+            res.send('Message forwarded successfully!');
+        }
     }
     else {
         res.status(400).send({error: 'Error while sending message!'});

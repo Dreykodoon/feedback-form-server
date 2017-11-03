@@ -1,7 +1,7 @@
 const winston = require('winston');
 const path = require('path');
 
-const fileName = path.join(__dirname, 'logfile.log');
+const fileName = path.join(__dirname, '../logfile.log');
 
 const logger = new (winston.Logger)({
     transports: [

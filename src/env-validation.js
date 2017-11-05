@@ -1,6 +1,6 @@
 const logger = require('./configurations/logger-config');
 
-const envVarsSet = () => {
+const checkEnvVars = () => {
     if (process.env.NODE_ENV === 'production'
         && !process.env.EMAIL_SENDER
         && !process.env.EMAIL_PASS
@@ -15,5 +15,5 @@ const envVarsSet = () => {
 };
 
 module.exports = {
-    environmentVariablesSet: envVarsSet,
+    checkEnvironmentVariables: checkEnvVars,
 };

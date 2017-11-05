@@ -196,7 +196,10 @@
         ],
         "quotes": [
             2,
-            "single"
+            "single",
+            {
+                "allowTemplateLiterals": true
+            }
         ],
         "semi": [
             2,

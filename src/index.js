@@ -2,6 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const logger = require('./configurations/logger-config');
 const emailRouter = require('./routes/email-router');
+const {environmentVariablesSet} = require('./env-validation');
+
+environmentVariablesSet();
 
 const app = express();
 app.use(bodyParser.json());

@@ -12,7 +12,8 @@
         "start-prod-windows": "set NODE_ENV=production&& nodemon --exec \"npm run server\"",
         "start-prod-linux": "NODE_ENV=production nodemon --exec \"npm run server\"",
         "server": "nodemon --watch src src/index.js",
-        "lint": "./node_modules/.bin/eslint ."
+        "lint": "./node_modules/.bin/eslint .",
+        "test": "./node_modules/.bin/jasmine JASMINE_CONFIG_PATH=jasmine.json"
     },
     "keywords": [],
     "author": "",
@@ -20,6 +21,7 @@
     "devDependencies": {
         "babel-eslint": "^7.2.3",
         "eslint": "^3.19.0",
+        "jasmine": "^2.8.0",
         "nodemon": "^1.12.1"
     },
     "dependencies": {

@@ -1,5 +1,5 @@
 const express = require('express');
-const {isFormValid} = require('./form-validation');
+const {isFormValid, isSpammingAttempt} = require('./form-validation');
 const {transporter, enhanceMailOptions} = require('../configurations/nodemailer-config');
 const logger = require('../configurations/logger-config');
 
@@ -7,8 +7,7 @@ const router = express.Router();
 
 router.post('/', function(req, res) {
     if (isFormValid(req.body)) {
-        const spammingAttempt = !!req.body.email2;
-        if (spammingAttempt) {
+        if (isSpammingAttempt(req.body)) {
             logger.log('warn', req.body);
             res.send('Message forwarded successfully!');
         }

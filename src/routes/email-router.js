@@ -8,7 +8,7 @@ const router = express.Router();
 router.post('/', function(req, res) {
     if (isFormValid(req.body)) {
         if (isSpammingAttempt(req.body, req.session.cookieSaved)) {
-            logger.log('warn', req.body);
+            logger.log('warn', `form data: ${JSON.stringify(req.body)}, cookie saved: ${req.session.cookieSaved}`);
             res.send('Message forwarded successfully!');
         }
         else if (process.env.NODE_ENV === 'production') {

@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post('/', function(req, res) {
     if (isFormValid(req.body)) {
-        if (isSpammingAttempt(req.body)) {
+        if (isSpammingAttempt(req.body, req.session.cookieSaved)) {
             logger.log('warn', req.body);
             res.send('Message forwarded successfully!');
         }

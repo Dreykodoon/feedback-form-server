@@ -33,20 +33,24 @@ describe('Form Validation Spec', () => {
     });
 
     describe('Spamming attempts', () => {
-        it('should return false only if spam field is a falsy value', () => {
-            const formData1 = {
+        it('should return true if form spam field is a truthy value', () => {
+            const formData1 = {email2: 'spamming!'};
+            const formData2 = {email2: {}};
+            const formData3 = {email2: []};
+            const cookieSaved = true;
+
+            expect(isSpammingAttempt(formData1, cookieSaved)).toBe(true);
+            expect(isSpammingAttempt(formData2, cookieSaved)).toBe(true);
+            expect(isSpammingAttempt(formData3, cookieSaved)).toBe(true);
+        });
+
+        it('should return true if no cookie was saved', () => {
+            const formData = {
                 email2: '',
             };
-            const formData2 = {
-                email2: null,
-            };
-            const formData3 = {
-                email2: 'spammer@email.address',
-            };
+            const cookieSaved = false;
 
-            expect(isSpammingAttempt(formData1)).toBe(false);
-            expect(isSpammingAttempt(formData2)).toBe(false);
-            expect(isSpammingAttempt(formData3)).toBe(true);
+            expect(isSpammingAttempt(formData, cookieSaved)).toBe(true);
         });
     });
 });

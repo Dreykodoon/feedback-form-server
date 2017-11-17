@@ -21,10 +21,14 @@ function isFormValid(formData) {
 
 /**
  * @param formData
- * @returns {boolean} returns <b>true</b> if the 'email2' form field isn't filled with a truthy value, , <b>false</b> otherwise.
+ * @param cookieSaved {boolean} - specifies if a cookie was created for this session
+ * @returns {boolean} returns <b>true</b> if at least one condition is met:
+ * - the 'email2' form field contains a truthy value,
+ * - cookieSaved is <b>false</b>
+ * <b>false</b> otherwise.
  */
-function isSpammingAttempt(formData) {
-    return !!formData.email2;
+function isSpammingAttempt(formData, cookieSaved) {
+    return !!formData.email2 || !cookieSaved;
 }
 
 module.exports = {

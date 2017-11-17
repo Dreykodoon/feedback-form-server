@@ -45,9 +45,7 @@ describe('Form Validation Spec', () => {
         });
 
         it('should return true if no cookie was saved', () => {
-            const formData = {
-                email2: '',
-            };
+            const formData = {email2: ''};
             const cookieSaved = false;
 
             expect(isSpammingAttempt(formData, cookieSaved)).toBe(true);

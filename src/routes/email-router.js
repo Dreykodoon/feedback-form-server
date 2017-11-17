@@ -6,6 +6,8 @@ const logger = require('../configurations/logger-config');
 const router = express.Router();
 
 router.post('/', function(req, res) {
+    req.session.test = 'test';
+    req.session.save();
     if (isFormValid(req.body)) {
         if (isSpammingAttempt(req.body)) {
             logger.log('warn', req.body);
